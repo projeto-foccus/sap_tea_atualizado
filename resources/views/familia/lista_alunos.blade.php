@@ -11,7 +11,7 @@
     @endif
 
     <!-- Formulário de Pesquisa -->
-    <form id="pesquisaForm" method="GET" action="{{ route('imprime_aluno') }}">
+    <form id="pesquisaForm" method="GET" action="{{ route('perfil.estudante.independente') }}">
         <div class="input-group mb-3">
             <input type="text" name="nome" class="form-control" placeholder="Pesquisar por estudante"
                    value="{{ request('nome') }}">

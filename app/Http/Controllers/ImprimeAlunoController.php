@@ -25,6 +25,6 @@ class ImprimeAlunoController extends Controller
         ->orderBy('alu_nome', 'asc')
         ->paginate(10);
 
-        return view('Alunos.imprime_aluno', compact('alunos'));
+        return view('alunos.perfil_estudante_aluno', compact('alunos'));
     }
 }

@@ -118,7 +118,7 @@
             <button type="submit" form="perfilForm" class="btn btn-mode btn-save">
                 <i class="fas fa-save"></i> Salvar Alterações
             </button>
-            <a href="{{ route('imprime_aluno') }}" class="btn btn-mode btn-cancel">
+            <a href="{{ route('perfil.estudante.independente') }}" class="btn btn-mode btn-cancel">
                 <i class="fas fa-times"></i> Cancelar
             </a>
         @endif

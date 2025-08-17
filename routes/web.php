@@ -192,7 +192,12 @@ Route::post('/formulario-submit', function (Request $request) {
 // Grupo de rotas para sondagens
 Route::middleware(['auth:funcionario', 'funcao.especial'])->prefix('sondagem')->group(function () {
     // Rota para listar alunos do professor logado
+    // Rota original mantida para compatibilidade
     Route::get('/perfil-estudante', [\App\Http\Controllers\PerfilEstudanteController::class, 'index'])->name('perfil.estudante');
+    
+    // Nova rota independente
+    Route::get('/perfil-estudante-independente', [\App\Http\Controllers\PerfilEstudanteIndependenteController::class, 'index'])->name('perfil.estudante.independente');
+    
     // Rotas de perfil
     Route::get('/alunos/{id}', [AlunoController::class, 'index'])->name('alunos.index');
     Route::get('/perfil-estudante/{id}', [PerfilEstudanteController::class, 'mostrar'])->name('perfil.estudante.mostrar');

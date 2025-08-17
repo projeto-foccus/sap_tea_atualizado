@@ -158,12 +158,12 @@ class AtualizacaoPerfilController extends Controller
             return response()->json([
                 'success' => true,
                 'message' => 'Perfil cadastrado com sucesso!',
-                'redirect' => route('imprime_aluno')
+                'redirect' => route('perfil.estudante.independente')
             ]);
         }
         
         // Redireciona de volta para a listagem de alunos
-        return redirect()->route('imprime_aluno')->with('success', 'Perfil cadastrado com sucesso!');
+        return redirect()->route('perfil.estudante.independente')->with('success', 'Perfil cadastrado com sucesso!');
 
     } catch (\Exception $e) {
         DB::rollBack();

@@ -399,7 +399,7 @@ return view('rotina_monitoramento.monitoramento_aluno', compact(
         ->orderBy('alu_nome', 'asc')
         ->get();
 
-    return view('alunos.imprime_aluno', [
+    return view('alunos.perfil_estudante_aluno', [
         'alunos' => $alunos,
         'titulo' => 'Alunos Matriculados',
         'rota_inventario' => 'perfil_estudante.index_inventario',
