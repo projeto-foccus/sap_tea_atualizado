@@ -427,12 +427,7 @@ public function index_inventario(Request $request)
                 [
                     'label' => 'Cadastrar Rotina',
                     'rota'  => 'rotina.monitoramento.cadastrar',
-                    'classe' => 'btn-success'
-                ],
-                [
-                    'label' => 'Visualizar Rotina',
-                    'rota'  => 'rotina.monitoramento.visualizar',
-                    'classe' => 'btn-info'
+                    'classe' => 'btn-success w-100'
                 ]
             ],
             'professor_nome' => $professor->func_nome,
@@ -504,12 +499,7 @@ public function mostra_aluno_eixo($id)
                 [
                     'label' => 'Cadastrar Rotina',
                     'rota'  => 'rotina.monitoramento.cadastrar',
-                    'classe' => 'btn-success'
-                ],
-                [
-                    'label' => 'Visualizar Rotina',
-                    'rota'  => 'rotina.monitoramento.visualizar',
-                    'classe' => 'btn-info'
+                    'classe' => 'btn-success w-100'
                 ]
             ],
             'professor_nome' => $professor->func_nome,
@@ -785,3 +775,4 @@ public function mostra_aluno_eixo($id)
         ]);
     }
 }
+

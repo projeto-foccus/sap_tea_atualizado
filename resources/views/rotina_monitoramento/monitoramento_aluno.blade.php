@@ -293,42 +293,6 @@ if ($total_atividades_geral > 0) {
             $liberaFi = $diasFi >= 40;
         }
     @endphp
-    <div class="period-section" style="margin-bottom: 24px;">
-      <strong>Fases disponíveis:</strong>
-      <ul style="list-style:none; padding-left:0; margin-bottom:0;">
-        <li>
-          <span style="font-weight:bold; color:#0056b3;">.1 Inicial</span> -
-          <span style="color:green;">Liberada</span>
-        </li>
-        <li>
-          @if($liberaC2)
-            <a href="{{ route('eixos.alunos', ['fase' => 'continuada2', 'id' => $alunoId ?? '']) }}" class="btn btn-success btn-sm">.2 Continuada</a>
-            <span style="color:green;">Liberada ({{ $diasC2 }} dias após Inicial)</span>
-          @else
-            <button class="btn btn-secondary btn-sm" disabled>.2 Continuada</button>
-            <span style="color:#b30000;">Disponível após 40 dias da Inicial (faltam {{ max(0, 40-$diasC2) }})</span>
-          @endif
-        </li>
-        <li>
-          @if($liberaC3)
-            <a href="{{ route('eixos.alunos', ['fase' => 'continuada3', 'id' => $alunoId ?? '']) }}" class="btn btn-success btn-sm">.3 Continuada</a>
-            <span style="color:green;">Liberada ({{ $diasC3 }} dias após C2)</span>
-          @else
-            <button class="btn btn-secondary btn-sm" disabled>.3 Continuada</button>
-            <span style="color:#b30000;">Disponível após 40 dias da C2 (faltam {{ max(0, 40-$diasC3) }})</span>
-          @endif
-        </li>
-        <li>
-          @if($liberaFi)
-            <a href="{{ route('eixos.alunos', ['fase' => 'final', 'id' => $alunoId ?? '']) }}" class="btn btn-success btn-sm">.4 Final</a>
-            <span style="color:green;">Liberada ({{ $diasFi }} dias após C3)</span>
-          @else
-            <button class="btn btn-secondary btn-sm" disabled>.4 Final</button>
-            <span style="color:#b30000;">Disponível após 40 dias da C3 (faltam {{ max(0, 40-$diasFi) }})</span>
-          @endif
-        </li>
-      </ul>
-    </div>
     <!-- PERÍODO DE APLICAÇÃO -->
     <div class="period-section">
       <span class="period">
@@ -452,15 +416,15 @@ if ($total_atividades_geral > 0) {
                 <button type="button" class="btn btn-secondary me-2" onclick="window.history.back()">
                     <i class="fas fa-arrow-left me-2"></i>Voltar
                 </button>
-                <button type="button" class="pdf-button btn btn-warning">
-    <i class="fas fa-file-pdf me-2"></i>Gerar PDF
-</button>
+                <button type="submit" class="btn btn-success btn-lg w-100">
+                    <i class="fas fa-save me-2"></i>Cadastrar Rotina
+                </button>
             </div>
         </div>
     </form>
   </div>
 </div>
--1" aria-labelledby="carregandoModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="carregandoModal" aria-labelledby="carregandoModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body text-center p-5">
