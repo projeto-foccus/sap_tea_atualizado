@@ -55,6 +55,12 @@ if (!videoSeen) {
 
     // Quando o modal é fechado
     document.getElementById('videoModal').addEventListener('hidden.bs.modal', function () {
+        // Pausar o vídeo quando fechar o modal
+        var video = document.getElementById('videoPlayer');
+        if (video) {
+            video.pause();
+        }
+        
         // Se o usuário marcou para não mostrar novamente
         if (document.getElementById('dontShowAgain').checked) {
             localStorage.setItem('video_seen', 'true');

@@ -330,7 +330,7 @@ EM            <ul>
                     <div style="width: 100%; max-width: 700px; background: #f6faff; border-radius: 14px; box-shadow: 0 4px 20px 0 rgba(30, 60, 120, 0.11); padding: 18px 0; border: 2px solid #a0c7e8;">
                         <div class="ratio ratio-16x9" style="width:100%;">
                             <video id="videoPlayerInline" controls playsinline style="width:100%; height:100%; object-fit:cover; border-radius: 10px;">
-                                <source src="{{ asset('videos/exemplo.mp4') }}" type="video/mp4">
+                                <source src="{{ asset('videos/exemplo.mp4') }}" type="video/mp4" />
                                 Seu navegador não suporta o elemento de vídeo.
                             </video>
                         </div>
@@ -341,15 +341,34 @@ EM            <ul>
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     var closeBtn = document.getElementById('close-video-btn');
-                    var showBtn = document.getElementById('show-video-btn');
                     var videoBlock = document.getElementById('welcome-video-block');
+                    var video = document.getElementById('videoPlayerInline');
+                    
+                    // Identificador único para o usuário logado (usando ID do funcionário)
+                    var userId = '{{ Auth::guard("funcionario")->user()->id ?? "guest" }}';
+                    var videoKey = 'video_seen_' + userId;
+                    
+                    // Verificar se o usuário já viu o vídeo
+                    if (sessionStorage.getItem(videoKey)) {
+                        videoBlock.style.display = 'none';
+                        return; // Não mostrar o vídeo se já foi visto
+                    }
+                    
+                    // Função para pausar o vídeo agressivamente
+                    function pauseVideo() {
+                        video.pause();
+                        video.currentTime = 0;
+                        video.src = '';
+                        video.load();
+                        video.removeAttribute('src');
+                        video.innerHTML = '';
+                    }
+                    
+                    // Fechar vídeo com botão
                     closeBtn.addEventListener('click', function() {
                         videoBlock.style.display = 'none';
-                        showBtn.style.display = 'block';
-                    });
-                    showBtn.addEventListener('click', function() {
-                        videoBlock.style.display = 'flex';
-                        showBtn.style.display = 'none';
+                        sessionStorage.setItem(videoKey, 'true'); // Marcar como visto
+                        pauseVideo();
                     });
                 });
                 </script>
