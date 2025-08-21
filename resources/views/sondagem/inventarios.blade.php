@@ -45,7 +45,17 @@
         <img src="{{ asset('img/LOGOTEA.png') }}" alt="Logo" class="logo">
         <img src="{{ asset('img/logo_sap.png') }}" alt="Logo SAP" class="logo-right">
 
-        <h1>SONDAGEM PEDAGÓGICA 1 - INICIAL</h1>
+        @php
+            $titulos = [
+                'inicial' => 'SONDAGEM PEDAGÓGICA 1 - INICIAL',
+                'continuada1' => 'SONDAGEM PEDAGÓGICA 2 - 1ª CONTINUADA',
+                'continuada2' => 'SONDAGEM PEDAGÓGICA 3 - 2ª CONTINUADA',
+                'continuada3' => 'SONDAGEM PEDAGÓGICA 4 - 3ª CONTINUADA',
+                'final' => 'SONDAGEM PEDAGÓGICA 5 - FINAL'
+            ];
+            $titulo = $titulos[$fase ?? 'inicial'] ?? 'SONDAGEM PEDAGÓGICA';
+        @endphp
+        <h1>{{ $titulo }}</h1>
         
         <div class="fields">
             <div class="fields">

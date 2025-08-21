@@ -210,7 +210,9 @@ Route::middleware(['auth:funcionario', 'funcao.especial'])->prefix('sondagem')->
 
     // Rota para processar resultados dos três eixos
     Route::post('/processa-resultados/{alunoId}', [\App\Http\Controllers\ProcessaResultadosController::class, 'processaTodosEixos'])->name('processa_resultados');
-    Route::get('/eixos-estudante', [PerfilEstudanteController::class, 'index_inventario'])->name('eixos.alunos');
+    Route::get('/eixos-estudante/{fase?}', [PerfilEstudanteController::class, 'index_inventario'])
+       ->name('eixos.alunos')
+       ->where('fase', 'inicial|continuada1|continuada2|continuada3|final');
 
     Route::get('/cadastra-inventario/{id}', [AlunoController::class, 'mostra_aluno_inventario'])->name('alunos.inventario');
     // Route removida para evitar conflito de nome

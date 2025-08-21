@@ -103,8 +103,11 @@ class AlunoController extends Controller
         return view('alunos.perfil_estudante', compact('aluno'));
     }
 
-    public function mostra_aluno_inventario($id)
+    public function mostra_aluno_inventario($id, Request $request)
 {
+    // Obtém a fase da requisição, padrão para 'inicial' se não especificada
+    $fase = $request->query('fase', 'inicial');
+    
     // Busca dados detalhados (campos extras)
     $alunoDetalhado = Aluno::getAlunosDetalhados($id)[0] ?? abort(404);
 
@@ -118,17 +121,20 @@ class AlunoController extends Controller
 
     // Usa o array completo de perguntas do eixo comportamento
     $perguntas_eixo_comportamento_filtrado = $this->perguntas_eixo_comportamento;
-        // Log para depuração
-        Log::info('Perguntas do eixo comportamento:', $perguntas_eixo_comportamento_filtrado);
-        Log::info('Total de perguntas do eixo comportamento:', ['total' => count($perguntas_eixo_comportamento_filtrado)]);
-        
-        return view('sondagem.inventarios', [
-            'aluno' => $aluno, // Objeto Eloquent com relacionamentos
-            'alunoDetalhado' => $alunoDetalhado, // Dados da query customizada
-            'Perguntas_eixo_comunicacao' => $this->Perguntas_eixo_comunicacao,
-            'perguntas_eixo_comportamento' => $perguntas_eixo_comportamento_filtrado,
-            'eixo_int_socio_emocional' => $this->eixo_int_socio_emocional
-        ]);
+    
+    // Log para depuração
+    Log::info('Perguntas do eixo comportamento:', $perguntas_eixo_comportamento_filtrado);
+    Log::info('Total de perguntas do eixo comportamento:', ['total' => count($perguntas_eixo_comportamento_filtrado)]);
+    Log::info('Fase da sondagem:', ['fase' => $fase]);
+    
+    return view('sondagem.inventarios', [
+        'aluno' => $aluno, // Objeto Eloquent com relacionamentos
+        'alunoDetalhado' => $alunoDetalhado, // Dados da query customizada
+        'Perguntas_eixo_comunicacao' => $this->Perguntas_eixo_comunicacao,
+        'perguntas_eixo_comportamento' => $perguntas_eixo_comportamento_filtrado,
+        'eixo_int_socio_emocional' => $this->eixo_int_socio_emocional,
+        'fase' => $fase // Passa a fase para a view
+    ]);
 }
 
     

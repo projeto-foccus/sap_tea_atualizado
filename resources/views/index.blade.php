@@ -202,9 +202,9 @@
                     </a>
                     <ul class="submenu">
                        <li><a href="{{ route('eixos.alunos', ['fase' => 'inicial']) }}" class="menu-link" data-page="Sondagem Inicial">.1 Inicial</a></li>
-                        <li><a href="{{ route('eixos.alunos', ['fase' => 'continuada2']) }}" class="menu-link disabled" title="Em breve">.2 Continuada</a></li>
-                        <li><a href="{{ route('eixos.alunos', ['fase' => 'continuada3']) }}" class="menu-link disabled" title="Em breve">.3 Continuada</a></li>
-                        <li><a href="{{ route('eixos.alunos', ['fase' => 'final']) }}" class="menu-link disabled" title="Em breve">.4 Final</a></li>
+                        <li><a href="{{ route('eixos.alunos', ['fase' => 'continuada1']) }}" class="menu-link" data-page="Sondagem 1ª Cont.">.2 Continuada</a></li>
+                        <li><a href="{{ route('eixos.alunos', ['fase' => 'continuada2']) }}" class="menu-link" data-page="Sondagem 2ª Cont.">.3 Continuada</a></li>
+                        <li><a href="{{ route('eixos.alunos', ['fase' => 'final']) }}" class="menu-link" data-page="Sondagem Final">.4 Final</a></li>
                     </ul>
                 </li>
                 <li>

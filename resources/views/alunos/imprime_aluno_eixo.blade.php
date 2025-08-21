@@ -53,9 +53,33 @@
                         @endif
 
                         @if(($exibeBotaoInventario ?? false) && $aluno->flag_inventario !== "*")
-                            <a href="{{ route($rota_acao ?? 'alunos.inventario', ['id' => $aluno->alu_id]) }}" class="btn btn-primary btn-sm d-inline-block align-middle">Sondagem Inicial</a>
+                            <a href="{{ route($rota_acao ?? 'alunos.inventario', ['id' => $aluno->alu_id, 'fase' => $fase ?? 'inicial']) }}" class="btn btn-primary btn-sm d-inline-block align-middle">
+                                @if(isset($fase) && $fase === 'continuada1')
+                                    Sondagem 1ª Cont.
+                                @elseif(isset($fase) && $fase === 'continuada2')
+                                    Sondagem 2ª Cont.
+                                @elseif(isset($fase) && $fase === 'continuada3')
+                                    Sondagem 3ª Cont.
+                                @elseif(isset($fase) && $fase === 'final')
+                                    Sondagem Final
+                                @else
+                                    Sondagem Inicial
+                                @endif
+                            </a>
                         @elseif(($exibeBotaoInventario ?? false) && $aluno->flag_inventario === "*")
-                            <button class="btn btn-danger btn-sm d-inline-block align-middle" style="background-color:#e74c3c; border-color:#c0392b; color:#fff; opacity:0.8;" disabled>Sondagem Inicial</button>
+                            <button class="btn btn-danger btn-sm d-inline-block align-middle" style="background-color:#e74c3c; border-color:#c0392b; color:#fff; opacity:0.8;" disabled>
+                                @if(isset($fase) && $fase === 'continuada1')
+                                    Sondagem 1ª Cont.
+                                @elseif(isset($fase) && $fase === 'continuada2')
+                                    Sondagem 2ª Cont.
+                                @elseif(isset($fase) && $fase === 'continuada3')
+                                    Sondagem 3ª Cont.
+                                @elseif(isset($fase) && $fase === 'final')
+                                    Sondagem Final
+                                @else
+                                    Sondagem Inicial
+                                @endif
+                            </button>
                         @endif
 
                         @if($exibeBotaoPdf ?? false)

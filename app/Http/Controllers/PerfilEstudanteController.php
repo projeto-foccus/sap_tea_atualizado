@@ -408,7 +408,7 @@ return view('rotina_monitoramento.monitoramento_aluno', compact(
     ]);
 }
 
-public function index_inventario(Request $request)
+public function index_inventario(Request $request, $fase = 'inicial')
 {
     $professor = auth('funcionario')->user();
     $funcId = $professor->func_id;
@@ -416,6 +416,20 @@ public function index_inventario(Request $request)
     $alunos = \App\Models\Aluno::porProfessor($funcId)
         ->orderBy('alu_nome', 'asc')
         ->get();
+
+    // Títulos para cada fase
+    $titulos = [
+        'inicial' => 'Sondagem Inicial',
+        'continuada1' => 'Sondagem 1ª Cont.',
+        'continuada2' => 'Sondagem 2ª Cont.',
+        'continuada3' => 'Sondagem 3ª Cont.',
+        'final' => 'Sondagem Final'
+    ];
+
+    $titulo = $titulos[$fase] ?? 'Sondagem';
+
+    // Verifica se a fase está habilitada
+    $faseHabilitada = in_array($fase, ['inicial', 'continuada1', 'continuada2', 'continuada3', 'final']); // Todas as fases estão habilitadas
 
     // Teste: se vier do menu de rotina, mostre botões diferentes
     $contexto = $request->get('contexto');
@@ -431,18 +445,20 @@ public function index_inventario(Request $request)
                 ]
             ],
             'professor_nome' => $professor->func_nome,
+            'fase' => $fase
         ]);
     }
 
     // Default: inventário
     return view('alunos.imprime_aluno_eixo', [
         'alunos' => $alunos,
-        'titulo' => 'Estudantes matriculados:',
+        'titulo' => $titulo,
         'rota_acao' => 'alunos.inventario',
         'rota_pdf' => 'visualizar.inventario',
-        'exibeBotaoInventario' => true,
+        'exibeBotaoInventario' => $faseHabilitada,
         'exibeBotaoPdf' => true,
         'professor_nome' => $professor->func_nome,
+        'fase' => $fase
     ]);
 }
 
