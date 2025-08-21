@@ -121,8 +121,9 @@ Route::middleware(['auth:funcionario', 'funcao.especial'])->group(function () {
 
 // =========================
 // ROTA FUNCIONAL PARA MONITORAMENTO DO ALUNO
-use App\Http\Controllers\ProcessaResultadosController;
-Route::get('/monitoramento/aluno', [ProcessaResultadosController::class, 'monitoramentoAluno'])->name('monitoramento.aluno');
+Route::get('/monitoramento/aluno/{aluno_id}', [MonitoramentoController::class, 'rotina_monitoramento_aluno'])->name('rotina.monitoramento.aluno');
+Route::get('/monitoramento/cadastrar/{id}', [MonitoramentoController::class, 'cadastrar_rotina_aluno'])->name('rotina.monitoramento.cadastrar');
+Route::post('/monitoramento/salvar/{id}', [MonitoramentoController::class, 'salvar_rotina'])->name('rotina.monitoramento.salvar');
 
 // =========================
 // INDICATIVO DE ATIVIDADES
