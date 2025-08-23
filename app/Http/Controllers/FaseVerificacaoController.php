@@ -38,7 +38,7 @@ class FaseVerificacaoController extends Controller
                           ->where('controle_fases_sondagem.fase_cont2', 'Pendente');
                     break;
                 case 'final':
-                    $query->where('controle_fases_sondagem.fase_cont2', 'Cont2')
+                    $query->where('controle_fases_sondagem.cont_fase_c2', 3)
                           ->where('controle_fases_sondagem.fase_final', 'Pendente');
                     break;
                 // Se nenhuma fase corresponder, não retorna alunos.
