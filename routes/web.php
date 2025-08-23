@@ -31,6 +31,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController; // Importação para os materiais
 use App\Http\Controllers\GraficoMonitoramentoController;
 use App\Http\Controllers\MonitoramentoAtividadeController;
+use App\Http\Controllers\MonitoramentoController;
 use App\Http\Controllers\RotinaCadastroController;
 
 /*
@@ -193,9 +194,8 @@ Route::post('/formulario-submit', function (Request $request) {
 
 // Grupo de rotas para sondagens
 Route::middleware(['auth:funcionario', 'funcao.especial'])->prefix('sondagem')->group(function () {
-    // Rota para listar alunos do professor logado
-    // Rota original mantida para compatibilidade
-    Route::get('/perfil-estudante', [\App\Http\Controllers\PerfilEstudanteController::class, 'index'])->name('perfil.estudante');
+    // Rota para listar alunos do professor logado usando novo controller
+    Route::get('/perfil-estudante', [\App\Http\Controllers\PerfilEstudanteIndependenteController::class, 'index'])->name('perfil.estudante');
     
     // Nova rota independente
     Route::get('/perfil-estudante-independente', [\App\Http\Controllers\PerfilEstudanteIndependenteController::class, 'index'])->name('perfil.estudante.independente');
@@ -207,7 +207,6 @@ Route::middleware(['auth:funcionario', 'funcao.especial'])->prefix('sondagem')->
     Route::get('/editar-perfil/{id}', [VisualizaPerfilController::class, 'editaPerfil'])->name('editar.perfil');
     Route::put('/atualizaperfil/{id}', [AtualizacaoPerfilController::class, 'AtualizaPerfil'])->name('atualiza.perfil.estudante');
     Route::post('/inserir_perfil', [InserirPerfilEstudante::class, 'inserir_perfil_estudante'])->name('inserir_perfil');
-    Route::get('/perfil-estudante', [PerfilEstudanteController::class, 'index'])->name('perfil.estudante');
 
     // Rota para processar resultados dos três eixos
     Route::post('/processa-resultados/{alunoId}', [\App\Http\Controllers\ProcessaResultadosController::class, 'processaTodosEixos'])->name('processa_resultados');
