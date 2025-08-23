@@ -31,6 +31,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MaterialController; // Importação para os materiais
 use App\Http\Controllers\GraficoMonitoramentoController;
 use App\Http\Controllers\MonitoramentoAtividadeController;
+use App\Http\Controllers\RotinaCadastroController;
 
 /*
 |--------------------------------------------------------------------------
@@ -232,7 +233,7 @@ Route::get('/rotina_monitoramento/aluno/{id}', [\App\Http\Controllers\PerfilEstu
 Route::get('/rotina/cadastrar/{id}', [\App\Http\Controllers\PerfilEstudanteController::class, 'rotina_monitoramento_aluno'])->name('rotina.cadastrar.aluno');
 Route::prefix('rotina_monitoramento')->group(function () {
     // Rota para página inicial de rotina e monitoramento
-    Route::get('/rot_monit_inicial', [PerfilEstudanteController::class, 'rotina_monitoramento_inicial'])->name('rotina.monitoramento.inicial');
+    Route::get('/rot_monit_inicial', [RotinaCadastroController::class, 'rotina_monitoramento_inicial'])->name('rotina.monitoramento.inicial');
 });
 
 

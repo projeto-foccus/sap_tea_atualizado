@@ -416,8 +416,8 @@ if ($total_atividades_geral > 0) {
                 <button type="button" class="btn btn-secondary me-2" onclick="window.history.back()">
                     <i class="fas fa-arrow-left me-2"></i>Voltar
                 </button>
-                <button type="submit" class="btn btn-success btn-lg w-100">
-                    <i class="fas fa-save me-2"></i>Cadastrar Rotina
+                <button type="button" class="btn btn-primary pdf-button">
+                    <i class="fas fa-file-pdf me-2"></i>Gerar PDF
                 </button>
             </div>
         </div>
