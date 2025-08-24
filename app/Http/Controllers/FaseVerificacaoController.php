@@ -18,12 +18,13 @@ class FaseVerificacaoController extends Controller
         $anoAtual = date('Y');
 
         if ($fase === 'inicial') {
-            // Para a fase inicial, mostrar todos os alunos do professor, sem filtros de fase.
+            // Fase inicial: todos os alunos do professor
             $alunos = \App\Models\Aluno::porProfessor($funcId)
+                ->select('aluno.*')
                 ->orderBy('aluno.alu_nome', 'asc')
                 ->get();
         } else {
-            // Para as outras fases, usamos o scope do professor e juntamos com a tabela de controle.
+            // Outras fases: critérios específicos de progressão
             $query = \App\Models\Aluno::porProfessor($funcId)
                 ->join('controle_fases_sondagem', 'aluno.alu_id', '=', 'controle_fases_sondagem.id_aluno')
                 ->where('controle_fases_sondagem.ano', $anoAtual);
@@ -41,13 +42,11 @@ class FaseVerificacaoController extends Controller
                     $query->where('controle_fases_sondagem.cont_fase_c2', 3)
                           ->where('controle_fases_sondagem.fase_final', 'Pendente');
                     break;
-                // Se nenhuma fase corresponder, não retorna alunos.
-                default:
-                    $query->whereRaw('1=0');
-                    break;
             }
-
-            $alunos = $query->select('aluno.*')->orderBy('aluno.alu_nome', 'asc')->get();
+            
+            $alunos = $query->select('aluno.*')
+                ->orderBy('aluno.alu_nome', 'asc')
+                ->get();
         }
 
         // Títulos para cada fase
