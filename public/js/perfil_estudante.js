@@ -1,5 +1,5 @@
 /**
- * dfdfdfddfdfdfdfdfdfdfdfdfddfdfddfdfddfdfdfdfd
+ * dfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfd
  * Gerenciamento do formulário de perfil do estudante
  * 
  * Este arquivo contém a lógica de navegação entre abas,
